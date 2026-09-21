@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import prisma from '../../../config/database';
-import { authenticate, AuthRequest } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
+import prisma from '../../config/database';
+import { authenticate, AuthRequest } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
 import { z } from 'zod';
-import { env } from '../../../config/env';
+import { env } from '../../config/env';
 
 export const inventoryRoutes = Router();
 

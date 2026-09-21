@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { authenticate } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
-import prisma from '../../../config/database';
-import { AppError } from '../../../shared/middleware/error-handler';
+import { authenticate } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
+import prisma from '../../config/database';
+import { AppError } from '../../shared/middleware/error-handler';
 
 export const settingsRoutes = Router();
 

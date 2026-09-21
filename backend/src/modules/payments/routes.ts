@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
-import prisma from '../../../config/database';
-import { authenticate, AuthRequest } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
+import prisma from '../../config/database';
+import { authenticate, AuthRequest } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
 import { z } from 'zod';
 
 export const paymentRoutes = Router();

@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import prisma from '../../../config/database';
-import { authenticate, AuthRequest } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
+import prisma from '../../config/database';
+import { authenticate, AuthRequest } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
 import { z } from 'zod';
 
 export const categoryRoutes = Router();

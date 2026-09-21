@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { verifyPassword, generateToken } from '../../../shared/services/auth';
-import { prisma } from '../../../config/database';
-import { authenticate } from '../../../shared/middleware/auth';
+import { verifyPassword, generateToken } from '../../shared/services/auth';
+import { prisma } from '../../config/database';
+import { authenticate } from '../../shared/middleware/auth';
 
 export const authRoutes = Router();
 

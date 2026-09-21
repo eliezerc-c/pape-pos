@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import multer from 'multer';
-import prisma from '../../../config/database';
-import { authenticate, AuthRequest } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
-import { ensureStorageDir, generateUniqueName, validateImageFile, getImagePath } from '../../../shared/services/storage';
-import { env } from '../../../config/env';
+import prisma from '../../config/database';
+import { authenticate, AuthRequest } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
+import { ensureStorageDir, generateUniqueName, validateImageFile, getImagePath } from '../../shared/services/storage';
+import { env } from '../../config/env';
 import { z } from 'zod';
 
 export const productRoutes = Router();

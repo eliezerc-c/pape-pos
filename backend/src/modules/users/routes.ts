@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import prisma from '../../../config/database';
-import { authenticate, AuthRequest } from '../../../shared/middleware/auth';
-import { validateBody } from '../../../shared/middleware/validation';
-import { hashPassword, generateToken } from '../../../shared/services/auth';
-import { env } from '../../../config/env';
+import prisma from '../../config/database';
+import { authenticate, AuthRequest } from '../../shared/middleware/auth';
+import { validateBody } from '../../shared/middleware/validation';
+import { hashPassword, generateToken } from '../../shared/services/auth';
+import { env } from '../../config/env';
 import { z } from 'zod';
 import bcrypt from 'bcrypt';
 

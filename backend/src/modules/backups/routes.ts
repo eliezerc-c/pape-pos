@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { authenticate } from '../../../shared/middleware/auth';
-import { env } from '../../../config/env';
-import { AppError } from '../../../shared/middleware/error-handler';
+import { authenticate } from '../../shared/middleware/auth';
+import { env } from '../../config/env';
+import { AppError } from '../../shared/middleware/error-handler';
 import fs from 'fs';
 import path from 'path';
 
