@@ -52,15 +52,15 @@ export const AuthPage: React.FC = () => {
             <Input
               label="Usuario"
               type="text"
-              placeholder="admin"
+              placeholder="Usuario"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               required
             />
             <Input
-              label="Contrasena"
+              label="Contraseña"
               type="password"
-              placeholder="admin123"
+              placeholder="Contraseña"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               required
@@ -70,13 +70,7 @@ export const AuthPage: React.FC = () => {
             </Button>
           </form>
 
-          <div className="mt-6 pt-4 border-t border-gray-800">
-            <div className="bg-gray-800 rounded-lg p-3 text-xs text-gray-400">
-              <p className="font-medium text-gray-300 mb-1">Credenciales de prueba:</p>
-              <p>Admin: admin / admin123</p>
-              <p>Cajero: cajero / cajero123</p>
-            </div>
-          </div>
+
         </Card>
       </div>
     </div>
