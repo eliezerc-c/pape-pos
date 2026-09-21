@@ -1,0 +1,30 @@
+import { Router } from 'express';
+import { authRoutes } from '../modules/auth/routes';
+import { userRoutes } from '../modules/users/routes';
+import { productRoutes } from '../modules/products/routes';
+import { categoryRoutes } from '../modules/categories/routes';
+import { brandRoutes } from '../modules/brands/routes';
+import { inventoryRoutes } from '../modules/inventory/routes';
+import { saleRoutes } from '../modules/sales/routes';
+import { paymentRoutes } from '../modules/payments/routes';
+import { returnRoutes } from '../modules/returns/routes';
+import { cashRegisterRoutes } from '../modules/cash-register/routes';
+import { reportRoutes } from '../modules/reports/routes';
+import { settingsRoutes } from '../modules/settings/routes';
+import { backupRoutes } from '../modules/backups/routes';
+
+export const router = Router();
+
+router.use('/auth', authRoutes);
+router.use('/users', userRoutes);
+router.use('/products', productRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/brands', brandRoutes);
+router.use('/inventory', inventoryRoutes);
+router.use('/sales', saleRoutes);
+router.use('/payments', paymentRoutes);
+router.use('/returns', returnRoutes);
+router.use('/cash-register', cashRegisterRoutes);
+router.use('/reports', reportRoutes);
+router.use('/settings', settingsRoutes);
+router.use('/backups', backupRoutes);

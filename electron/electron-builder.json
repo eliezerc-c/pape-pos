@@ -1,0 +1,67 @@
+{
+  "appId": "com.papeleria.pos",
+  "productName": "Papeleria POS",
+  "description": "Sistema de Punto de Venta para Papeleria",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "directories": {
+    "output": "dist",
+    "buildResources": "assets"
+  },
+  "files": [
+    "electron/**/*",
+    "backend/dist/**/*",
+    "backend/package.json",
+    "backend/prisma/**/*",
+    "frontend/dist/**/*",
+    "!**/node_modules/**"
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "assets/icon.png",
+    "artifactName": "Papeleria-POS-${version}.exe",
+    "publisherName": "Papeleria POS",
+    "category": "Business",
+    "shortcutName": "Papeleria POS",
+    "executableName": "papeleria-pos",
+    "guid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Papeleria POS",
+    "installerIcon": "assets/icon.png",
+    "uninstallerIcon": "assets/icon.png",
+    "installerHeaderIcon": "assets/icon.png",
+    "deleteAppDataOnUninstall": false
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "assets/icon.png",
+    "category": "public.app-category.business"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "assets/icon.png",
+    "category": "Business"
+  },
+  "publish": null,
+  "buildDependenciesFromSources": [],
+  "extraResources": [
+    {
+      "from": "backend/dist/",
+      "to": "backend/dist/"
+    },
+    {
+      "from": "backend/prisma/",
+      "to": "backend/prisma/"
+    },
+    {
+      "from": "frontend/dist/",
+      "to": "frontend/dist/"
+    }
+  ]
+}

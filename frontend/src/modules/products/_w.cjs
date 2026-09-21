@@ -1,0 +1,1 @@
+const fs=require('fs');const p='C:/Users/casa/Documents/IA/proyecto104/papeleria-pos/frontend/src/modules/products/ProductsPage.tsx';fs.writeFileSync(p,fs.readFileSync('C:/Users/casa/Documents/IA/proyecto104/papeleria-pos/frontend/src/modules/products/ProductsPage.tsx','utf8').substring(0,50));console.log('ok');
