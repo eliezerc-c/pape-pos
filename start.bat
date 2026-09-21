@@ -12,8 +12,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 echo Iniciando backend y frontend en segundo plano...
-pm2 start "npm run dev:backend" --name "pape-backend"
-pm2 start "npm run dev:frontend" --name "pape-frontend"
+pm2 start ecosystem.config.js
 
 echo.
 echo ============================================
@@ -28,7 +27,5 @@ echo  Para detener:    pm2 stop all
 echo  Para eliminar:   pm2 delete all
 echo  Para ver logs:   pm2 logs
 echo.
-echo  Presiona cualquier tecla para ver el estado...
-pause >nul
 pm2 status
 pause
