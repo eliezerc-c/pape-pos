@@ -347,6 +347,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.categoryId) { toast.error('La categoria es obligatoria'); return; }
+    if (!formData.brandId) { toast.error('La marca es obligatoria'); return; }
     const fd = new FormData();
     fd.append('name', formData.name);
     fd.append('sku', formData.sku);
@@ -380,12 +382,14 @@ const ProductForm: React.FC<ProductFormProps> = ({
           options={[{ value: '', label: 'Seleccionar...' }, ...categories.map((c: any) => ({ value: c.id, label: c.name }))]}
           value={formData.categoryId}
           onChange={(e) => handleChange('categoryId', e.target.value)}
+          required
         />
         <Select
           label="Marca"
           options={[{ value: '', label: 'Seleccionar...' }, ...brands.map((b: any) => ({ value: b.id, label: b.name }))]}
           value={formData.brandId}
           onChange={(e) => handleChange('brandId', e.target.value)}
+          required
         />
       </div>
       <div>

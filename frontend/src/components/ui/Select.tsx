@@ -11,7 +11,7 @@ export const Select: React.FC<SelectProps> = ({ label, error, options, placehold
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label className="text-sm font-medium text-gray-300">{label}</label>
+        <label className="text-sm font-medium text-gray-300">{label}{props.required && <span className="text-red-400 ml-0.5">*</span>}</label>
       )}
       <select
         className={`input-field ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}

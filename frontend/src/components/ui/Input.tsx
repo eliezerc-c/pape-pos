@@ -10,7 +10,7 @@ export const Input: React.FC<InputProps> = ({ label, error, helperText, classNam
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label className="text-sm font-medium text-gray-300">{label}</label>
+        <label className="text-sm font-medium text-gray-300">{label}{props.required && <span className="text-red-400 ml-0.5">*</span>}</label>
       )}
       <input
         className={`input-field ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
