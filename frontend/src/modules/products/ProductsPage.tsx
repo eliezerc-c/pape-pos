@@ -351,7 +351,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
     if (!formData.brandId) { toast.error('La marca es obligatoria'); return; }
     const fd = new FormData();
     fd.append('name', formData.name);
-    fd.append('sku', formData.sku);
+    if (formData.sku) fd.append('sku', formData.sku);
     fd.append('salePrice', String(parseFloat(formData.salePrice) || 0));
     fd.append('purchasePrice', String(parseFloat(formData.purchasePrice) || 0));
     fd.append('stock', String(parseInt(String(formData.stock)) || 0));
@@ -368,7 +368,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <Input label="Nombre" value={formData.name} onChange={(e) => handleChange('name', e.target.value)} required />
-        <Input label="SKU" value={formData.sku} onChange={(e) => handleChange('sku', e.target.value)} required />
+        <Input label="SKU" value={formData.sku} onChange={(e) => handleChange('sku', e.target.value)} />
         <Input label="Precio de venta" type="number" step="0.01" value={formData.salePrice} onChange={(e) => handleChange('salePrice', e.target.value)} required />
         <Input label="Precio de compra" type="number" step="0.01" value={formData.purchasePrice} onChange={(e) => handleChange('purchasePrice', e.target.value)} />
         <Input label="Stock" type="number" value={formData.stock} onChange={(e) => handleChange('stock', e.target.value)} required />

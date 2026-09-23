@@ -25,20 +25,20 @@ const fileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFil
 const upload = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024 } });
 
 const createProductSchema = z.object({
-  name: z.string().min(1).max(200),
-  description: z.string().optional(),
-  categoryId: z.string().min(1),
-  brandId: z.string().optional().or(z.literal('')),
-  sku: z.string().min(1).max(50),
-  barcode: z.string().optional(),
-  unit: z.string().max(10).default('UNI'),
-  purchasePrice: z.number().min(0).max(999999.99),
-  salePrice: z.number().min(0).max(999999.99),
-  wholesalePrice: z.number().min(0).max(999999.99).optional(),
-  stock: z.number().int().min(0).default(0),
-  stockMin: z.number().int().min(0).default(1),
-  stockMax: z.number().int().optional(),
-  location: z.string().optional(),
+    name: z.string().min(1).max(200),
+    description: z.string().optional(),
+    categoryId: z.string().min(1),
+    brandId: z.string().optional().or(z.literal('')),
+    sku: z.string().max(50).optional(),
+    barcode: z.string().optional(),
+    unit: z.string().max(10).default('UNI'),
+    purchasePrice: z.coerce.number().min(0).max(999999.99),
+    salePrice: z.coerce.number().min(0).max(999999.99),
+    wholesalePrice: z.coerce.number().min(0).max(999999.99).optional(),
+    stock: z.coerce.number().int().min(0).default(0),
+    stockMin: z.coerce.number().int().min(0).default(1),
+    stockMax: z.coerce.number().int().optional(),
+    location: z.string().optional(),
 });
 
 const updateProductSchema = z.object({
