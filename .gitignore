@@ -7,8 +7,6 @@ storage/products/*
 !storage/products/.gitkeep
 database/backups/*
 !database/backups/.gitkeep
-prisma/migrations/
-!prisma/migrations/.gitkeep
 backend/tests/
 tests/
 !.gitkeep

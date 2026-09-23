@@ -1,4 +1,5 @@
 @echo off
+call ../env.bat
 echo ============================================
 echo  MIGRACIONES PRISMA - PAPELERIA POS
 echo ============================================
@@ -31,16 +32,8 @@ echo [3/3] Ejecutando migraciones...
 npx prisma migrate deploy
 if %ERRORLEVEL% neq 0 (
     echo ERROR: Fallo la ejecucion de migraciones.
-    echo Intentando con migrate dev...
-    npx prisma migrate dev --name init
-    if %ERRORLEVEL% neq 0 (
-        echo ERROR: Fallo la migracion dev tambien.
-        pause
-        exit /b 1
-    )
-    echo OK: Migracion dev completada.
-) else (
-    echo OK: Migraciones ejecutadas exitosamente.
+    pause
+    exit /b 1
 )
 
 echo.

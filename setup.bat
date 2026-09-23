@@ -1,4 +1,5 @@
 @echo off
+call env.bat
 echo ============================================
 echo  SETUP PAPELERIA POS - WINDOWS
 echo ============================================
@@ -13,15 +14,20 @@ if %ERRORLEVEL% neq 0 (
     exit /b 1
 )
 
-echo [1/6] Creando base de datos pape_pos...
-psql -U postgres -c "DROP DATABASE IF EXISTS pape_pos;" 2>nul
-psql -U postgres -c "CREATE DATABASE pape_pos;" 2>nul
+echo [1/6] Verificando base de datos pape_pos...
+psql -U postgres -c "SELECT 1 FROM pg_database WHERE datname = 'pape_pos'" >nul 2>&1
 if %ERRORLEVEL% neq 0 (
-    echo Intentando con contrasena...
-    set /p PG_PASS="Contrasena de postgres: "
-    PGPASSWORD=%PG_PASS% psql -U postgres -c "CREATE DATABASE pape_pos;" 2>nul
+    echo Creando base de datos pape_pos...
+    psql -U postgres -c "CREATE DATABASE pape_pos;" 2>&1
+    if %ERRORLEVEL% neq 0 (
+        echo [WARN] No se pudo crear la base de datos. Intentando con contrasena...
+        set /p PG_PASS="Contrasena de postgres: "
+        PGPASSWORD=%PG_PASS% psql -U postgres -c "CREATE DATABASE pape_pos;" 2>&1
+    )
+    echo OK: Base de datos creada.
+) else (
+    echo OK: Base de datos pape_pos ya existe. (No se modifico nada)
 )
-echo OK: Base de datos creada.
 
 echo.
 echo [2/6] Instalando dependencias del backend...
@@ -37,9 +43,10 @@ echo OK: Backend instalado.
 echo.
 echo [3/6] Ejecutando migraciones de Prisma...
 cd src
-call npx prisma migrate dev --name init
+call npx prisma migrate deploy
 if %ERRORLEVEL% neq 0 (
     echo ERROR: Fallo la migracion.
+    echo Ejecuta manualmente: cd backend && npx prisma migrate deploy
     pause
     exit /b 1
 )

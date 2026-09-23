@@ -1,4 +1,5 @@
 @echo off
+call ../env.bat
 echo ============================================
 echo  BACKUP PAPELERIA POS
 echo ============================================

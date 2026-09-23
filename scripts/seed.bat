@@ -1,10 +1,13 @@
 @echo off
+call ../env.bat
+cd /d "%~dp0"
+cd ..
+cd backend
+
 echo ============================================
 echo  SEED DATOS - PAPELERIA POS
 echo ============================================
 echo.
-
-cd backend
 
 if not exist "node_modules" (
     echo Instalando dependencias del backend...
@@ -17,11 +20,15 @@ if not exist "node_modules" (
 )
 
 echo [1/3] Verificando conexion a la base de datos...
-npx prisma db pull --force --schema=./prisma/schema.prisma >nul 2>&1
+psql -U postgres -h localhost -c "SELECT 1" >nul 2>&1
 if %ERRORLEVEL% neq 0 (
-    echo Advertencia: No se pudo conectar a la base de datos.
-    echo Verifica que PostgreSQL este corriendo y DATABASE_URL este correcta.
+    echo [ERROR] No se puede conectar a PostgreSQL.
+    echo Asegurate de que PostgreSQL este corriendo.
+    echo Ejecuta: start.bat
+    pause
+    exit /b 1
 )
+echo OK: Conexion a PostgreSQL establecida.
 
 echo.
 echo [2/3] Ejecutando seed...
@@ -47,13 +54,13 @@ echo OK: Datos de seed cargados exitosamente.
 echo.
 echo [3/3] Verificando datos...
 echo Usuarios en la base de datos:
-npx prisma query --schema=./prisma/schema.prisma "SELECT username, roleId FROM users" >nul 2>&1
+npx prisma query --schema=./prisma/schema.prisma "SELECT username, roleId FROM users" 2>&1
 
 echo.
 echo Productos en la base de datos:
-npx prisma query --schema=./prisma/schema.prisma "SELECT COUNT(*) FROM products" >nul 2>&1
+npx prisma query --schema=./prisma/schema.prisma "SELECT COUNT(*) FROM products" 2>&1
 
-cd ..
+cd ..\..
 echo.
 echo ============================================
 echo  SEED COMPLETADO

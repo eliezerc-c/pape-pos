@@ -1,0 +1,30 @@
+INSTALACION EN NUEVO PC
+========================
+
+REQUISITOS PREVIOS:
+1. PostgreSQL 18.x desde https://www.postgresql.org/download/windows/
+   Marcar "Add PostgreSQL to PATH" durante la instalacion
+2. Node.js 20.x+ desde https://nodejs.org/
+   Marcar "Add to PATH" durante la instalacion
+
+PASOS:
+1. Clonar o copiar el proyecto
+2. Abrir CMD como Administrador
+3. Ejecutar: setup-completo.bat
+4. Iniciar: start.bat
+
+ACCCESOS:
+- Backend:  http://localhost:3001
+- Frontend: http://localhost:5173
+- Admin: admin / admin123
+
+SERVICIOS:
+- configurar-servicios.bat (como Administrador) para auto-inicio
+
+ESTRUCTURA:
+- backend/    - Servidor Express + Prisma
+- frontend/   - Aplicacion React + Vite
+- database/   - Backups
+- scripts/    - Scripts auxiliares
+- env.bat     - Detecta Node.js y PostgreSQL automaticamente
+- ecosystem.config.js - Configuracion PM2
