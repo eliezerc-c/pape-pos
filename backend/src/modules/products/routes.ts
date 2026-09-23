@@ -151,7 +151,17 @@ productRoutes.get('/:id', authenticate, async (req: AuthRequest, res: Response):
 
 productRoutes.post('/', authenticate, requireAdmin, upload.single('image'), validateBody(createProductSchema), async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { name, description, categoryId, brandId, sku, barcode, unit, purchasePrice, salePrice, wholesalePrice, stock, stockMin, stockMax, location } = req.body;
+    const { name, description, categoryId, brandId, sku: skuFromBody, barcode, unit, purchasePrice, salePrice, wholesalePrice, stock, stockMin, stockMax, location } = req.body;
+    let sku = skuFromBody;
+    if (!sku) {
+      const lastProduct = await prisma.product.findFirst({ orderBy: { sku: 'desc' as const }, select: { sku: true } });
+      let nextNum = 1;
+      if (lastProduct?.sku) {
+        const match = lastProduct.sku.match(/PV-(\d+)/);
+        if (match) nextNum = parseInt(match[1], 10) + 1;
+      }
+      sku = `PV-${String(nextNum).padStart(5, '0')}`;
+    }
     const existingSku = await prisma.product.findFirst({ where: { sku } });
     if (existingSku) { res.status(409).json({ error: 'SKU ya existe' }); return; }
     if (barcode) {
