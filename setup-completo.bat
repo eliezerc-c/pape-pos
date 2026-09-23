@@ -102,6 +102,18 @@ if %ERRORLEVEL% neq 0 (
 cd ..
 
 echo.
+REM ============================================================
+REM BONUS: Crear archivo .env en backend si no existe
+REM ============================================================
+echo [BONUS] Verificando archivo .env...
+if not exist "backend\.env" (
+    copy ".env" "backend\.env" >nul
+    echo OK: Archivo .env creado.
+) else (
+    echo OK: Archivo .env ya existe.
+)
+
+echo.
 echo ============================================
 echo  SETUP COMPLETADO
 echo ============================================
