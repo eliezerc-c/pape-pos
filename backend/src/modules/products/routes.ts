@@ -186,7 +186,7 @@ productRoutes.put('/:id', authenticate, requireAdmin, upload.single('image'), va
     const product = await prisma.product.findUnique({ where: { id: req.params.id } });
     if (!product) { res.status(404).json({ error: 'Producto no encontrado' }); return; }
     const updateData: any = {};
-    const fields = ['name', 'description', 'categoryId', 'brandId', 'sku', 'barcode', 'unit', 'purchasePrice', 'salePrice', 'wholesalePrice', 'stockMin', 'stockMax', 'location', 'active'];
+    const fields = ['name', 'description', 'categoryId', 'brandId', 'sku', 'barcode', 'unit', 'purchasePrice', 'salePrice', 'wholesalePrice', 'stock', 'stockMin', 'stockMax', 'location', 'active'];
     for (const field of fields) {
       if (req.body[field] !== undefined) updateData[field] = req.body[field];
     }
