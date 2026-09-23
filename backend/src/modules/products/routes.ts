@@ -42,21 +42,21 @@ const createProductSchema = z.object({
 });
 
 const updateProductSchema = z.object({
-  name: z.string().min(1).max(200).optional(),
-  description: z.string().optional(),
-  categoryId: z.string().optional(),
-  brandId: z.string().optional(),
-  sku: z.string().min(1).max(50).optional(),
-  barcode: z.string().optional(),
-  unit: z.string().max(10).optional(),
-  purchasePrice: z.number().min(0).max(999999.99).optional(),
-  salePrice: z.number().min(0).max(999999.99).optional(),
-  wholesalePrice: z.number().min(0).max(999999.99).optional(),
-  stock: z.number().int().min(0).optional(),
-  stockMin: z.number().int().min(0).optional(),
-  stockMax: z.number().int().optional(),
-  location: z.string().optional(),
-  active: z.boolean().optional(),
+    name: z.string().min(1).max(200).optional(),
+    description: z.string().optional(),
+    categoryId: z.string().optional(),
+    brandId: z.string().optional(),
+    sku: z.string().min(1).max(50).optional(),
+    barcode: z.string().optional(),
+    unit: z.string().max(10).optional(),
+    purchasePrice: z.coerce.number().min(0).max(999999.99).optional(),
+    salePrice: z.coerce.number().min(0).max(999999.99).optional(),
+    wholesalePrice: z.coerce.number().min(0).max(999999.99).optional(),
+    stock: z.coerce.number().int().min(0).optional(),
+    stockMin: z.coerce.number().int().min(0).optional(),
+    stockMax: z.coerce.number().int().optional(),
+    location: z.string().optional(),
+    active: z.boolean().optional(),
 });
 
 function respond(res: Response, data: any, message: string, success: boolean = true) {
